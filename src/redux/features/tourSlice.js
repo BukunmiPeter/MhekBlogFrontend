@@ -104,29 +104,29 @@ export const searchTours = createAsyncThunk(
   }
 );
 
-// export const getToursByTag = createAsyncThunk(
-//   "tour/getToursByTag",
-//   async (tag, { rejectWithValue }) => {
-//     try {
-//       const response = await api.getTagTours(tag);
-//       return response.data;
-//     } catch (err) {
-//       return rejectWithValue(err.response.data);
-//     }
-//   }
-// );
+export const getToursByTag = createAsyncThunk(
+  "tour/getToursByTag",
+  async (tag, { rejectWithValue }) => {
+    try {
+      const response = await api.getTagTours(tag);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
-// export const getRelatedTours = createAsyncThunk(
-//   "tour/getRelatedTours",
-//   async (tags, { rejectWithValue }) => {
-//     try {
-//       const response = await api.getRelatedTours(tags);
-//       return response.data;
-//     } catch (err) {
-//       return rejectWithValue(err.response.data);
-//     }
-//   }
-// );
+export const getRelatedTours = createAsyncThunk(
+  "tour/getRelatedTours",
+  async (tags, { rejectWithValue }) => {
+    try {
+      const response = await api.getRelatedTours(tags);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 const tourSlice = createSlice({
   name: "tour",
@@ -258,28 +258,28 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
-    // [getToursByTag.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [getToursByTag.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.tagTours = action.payload;
-    // },
-    // [getToursByTag.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
-    // [getRelatedTours.pending]: (state, action) => {
-    //   state.loading = true;
-    // },
-    // [getRelatedTours.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.relatedTours = action.payload;
-    // },
-    // [getRelatedTours.rejected]: (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload.message;
-    // },
+    [getToursByTag.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getToursByTag.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.tagTours = action.payload;
+    },
+    [getToursByTag.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+    [getRelatedTours.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getRelatedTours.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.relatedTours = action.payload;
+    },
+    [getRelatedTours.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
   },
 });
 

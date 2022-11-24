@@ -81,10 +81,9 @@ const CardTour = ({
         />
         <div className="top-left">{name}</div>
         <span className="text-start tag-card">
-          {tags.map(
-            (tag) => `#${tag}`
-            // <Link to={`/tours/tag/${tag}`}> #{tag}</Link>
-          )}
+          {tags.map((tag) => (
+            <Link to={`/tours/tag/${tag}`}> #{tag}</Link>
+          ))}
           <MDBBtn
             style={{ float: "right" }}
             tag="a"
