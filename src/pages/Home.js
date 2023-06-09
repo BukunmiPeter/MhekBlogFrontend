@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTours, setCurrentPage } from "../redux/features/tourSlice";
 import CardTour from "../components/CardTour";
 import Spinner from "../components/Spinner";
-// import Pagination from "../components/Pagination";
+import Pagination from "../components/Pagination";
 import { useLocation } from "react-router-dom";
 
 function useQuery() {
@@ -12,20 +12,21 @@ function useQuery() {
 }
 
 const Home = () => {
-  // const { tours, loading, currentPage, numberOfPages }
-  const { tours, loading } = useSelector((state) => ({
-    ...state.tour,
-  }));
+  const { tours, loading, currentPage, numberOfPages } = useSelector(
+    (state) => ({
+      ...state.tour,
+    })
+  );
   const dispatch = useDispatch();
   const query = useQuery();
   const searchQuery = query.get("searchQuery");
   const location = useLocation();
 
   useEffect(() => {
-    // dispatch(getTours(currentPage));
-    dispatch(getTours());
+    dispatch(getTours(currentPage));
+    // dispatch(getTours());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentPage]);
 
   if (loading) {
     return <Spinner />;
@@ -37,6 +38,7 @@ const Home = () => {
         padding: "15px",
         maxWidth: "1000px",
         alignContent: "center",
+        marginTop: "1rem",
       }}
     >
       <MDBRow className="mt-5">
@@ -61,14 +63,14 @@ const Home = () => {
           </MDBContainer>
         </MDBCol>
       </MDBRow>
-      {/* {tours.length > 0 && !searchQuery && (
+      {tours.length > 0 && !searchQuery && (
         <Pagination
           setCurrentPage={setCurrentPage}
           numberOfPages={numberOfPages}
           currentPage={currentPage}
           dispatch={dispatch}
         />
-      )} */}
+      )}
     </div>
   );
 };
