@@ -38,7 +38,7 @@ const Home = () => {
         padding: "15px",
         maxWidth: "1000px",
         alignContent: "center",
-        marginTop: "1rem",
+        marginTop: "2rem",
       }}
     >
       <MDBRow className="mt-5">
@@ -48,11 +48,11 @@ const Home = () => {
           </MDBTypography>
         )}
 
-        {/* {tours.length === 0 && location.pathname !== "/" && (
+        {tours.length === 0 && location.pathname !== "/" && (
           <MDBTypography className="text-center mb-0" tag="h2">
             We couldn't find any matches for "{searchQuery}"
           </MDBTypography>
-        )} */}
+        )}
 
         <MDBCol>
           <MDBContainer>
